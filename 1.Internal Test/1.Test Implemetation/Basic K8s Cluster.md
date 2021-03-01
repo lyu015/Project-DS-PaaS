@@ -151,9 +151,14 @@
         sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 3. You should now deploy a Pod network to the cluster.
-- ref : https://www.weave.works/docs/net/latest/kubernetes/kube-addon/
+    - weave net (ref : https://www.weave.works/docs/net/latest/kubernetes/kube-addon/)
+    
+            kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 
-        kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+    - Calico
+
+            kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+
 
 - **For Worker Node**
 
@@ -171,3 +176,8 @@
         kubectl get pods -o wide --all-namespaces
 
 # **Done**
+
+
+- weave-net pods 3개의 Status 모두가 Running > Error > CrashLoopBackOff 상태로 계속 바뀌고 있음 - 계속 Restart  중
+
+- Calico 를 설치한 경우 정상적으로 동작함
