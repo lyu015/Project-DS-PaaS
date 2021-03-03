@@ -142,8 +142,16 @@
 1. kubeadm init
 
         sudo kubeadm init --pod-network-cidr 192.168.0.0/16
+        
 
     Then, Your Kubernetes control-plane has initialized successfully!
+    
+    Calico
+        kubeadm init --control-plane-endpoint="10.50.2.114:6443" --upload-certs --apiserver-advertise-address=10.50.2.115 --pod-network-cidr=192.168.0.0/16
+        
+    Weavenet
+        kubeadm init --control-plane-endpoint="10.50.2.114:6443" --upload-certs --apiserver-advertise-address=10.50.2.115 --pod-network-cidr=20.32.0.0/16
+
 2. To start using your cluster, you need to run the following as a regular user:
 
         mkdir -p $HOME/.kube
